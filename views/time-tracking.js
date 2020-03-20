@@ -1,7 +1,8 @@
 var html = require('choo/html')
 
 var TITLE = 'time tracking'
-var store = require('./getTime.js')
+// var store = require('./getTime.js')
+var store = function () {}
 
 module.exports = view
 

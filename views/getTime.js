@@ -1,7 +1,7 @@
 module.exports = store
 
 function store (state, emitter) {
-  state.today=new Date();
+  state.today = new Date();
   var h=state.today.getHours();
   var m=state.today.getMinutes();
   var s=state.today.getSeconds();
