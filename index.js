@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(require('choo-service-worker')())
 }
 
-app.use(require('./views/getTime'))
+app.use(require('./getTime'))
 
 app.route('/', require('./views/time-tracking'))
 app.route('/*', require('./views/404'))
