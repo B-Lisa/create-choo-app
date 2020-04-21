@@ -10,7 +10,15 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(require('choo-service-worker')())
 }
 
-app.use(require('./stores/clicks'))
+app.use(function (state, emitter) {
+  // initialize state
+  state.tasks = [
+    {type: 'task',text: "pre filled task 1", id: "1"},
+    {type: 'task',text: "pre filled task 2", id: "2"},
+  ]
+  emitter.emit('render')
+})
+app.use(require('./stores/Tasks'))
 
 app.route('/', require('./views/main'))
 app.route('/*', require('./views/404'))

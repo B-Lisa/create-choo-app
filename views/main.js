@@ -1,6 +1,8 @@
 var html = require('choo/html')
 
-var TITLE = 'my-choo-app - main'
+var TITLE = 'ToDoList - main'
+
+var tasks = require('../components/tasks.js')
 
 module.exports = view
 
@@ -8,25 +10,25 @@ function view (state, emit) {
   if (state.title !== TITLE) emit(state.events.DOMTITLECHANGE, TITLE)
 
   return html`
-    <body>
-      <div id="title">
-      <h1>ToDo List</h1>
+    <body align="center">
+    <div id="title">
+        <h1>ToDo List</h1>
     </div>
 
     <div id="input">
-      <input type="text" id="tasks" placeholder="Add your tasks here">
-      <button type="button" id="add" onclick=${tasklist}>Add</button>
+      <input type="text" id="task_input" placeholder="Add your tasks here">
+      <button type="button" id="add" onclick=${handleClick}>Add</button>
     </div>
 
-    <div id="output"></div>
+    <div id="output">
+        <p>${state.tasks.map(tasks)}</p>
+    </div>
+
     </body>
   `
 
-  function tasklist() {
-    let tasks = document.getElementById("tasks").value;
-    document.getElementById("output").innerHTML = "<ul>" + "<li>" + tasks + "</li>" + "</ul>";
+  function handleClick () {
+    var task = document.getElementById("task_input").value
+    emit('task:add', task)
   }
-
-  
-
 }
